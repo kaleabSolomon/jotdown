@@ -21,17 +21,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: MyAppBar(
-        height: MediaQuery.of(context).size.height * 0.1,
-        isDarkMode: isDarkMode,
-        toggleDarkMode: toggleTheme,
-      ),
-      body: Center(
-          child: Text(
-        "hello world",
-        style: TextStyle(color: Theme.of(context).colorScheme.primary),
-      )),
-    );
+        backgroundColor: Theme.of(context).colorScheme.background,
+        appBar: MyAppBar(
+          height: MediaQuery.of(context).size.height * 0.1,
+          isDarkMode: isDarkMode,
+          toggleDarkMode: toggleTheme,
+        ),
+        body: Container());
   }
 }

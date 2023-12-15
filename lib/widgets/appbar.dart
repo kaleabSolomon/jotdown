@@ -32,14 +32,21 @@ class _MyAppBarState extends State<MyAppBar> {
       ),
       actions: [
         IconButton(
+          onPressed: () {},
+          icon: Icon(
+              color: Theme.of(context).colorScheme.primary,
+              size: 40,
+              Icons.add),
+        ),
+        IconButton(
           onPressed: widget.toggleDarkMode,
           icon: Icon(
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.primary,
               size: 35,
               widget.isDarkMode
                   ? Icons.wb_sunny_outlined
                   : Icons.dark_mode_outlined),
-        )
+        ),
       ],
     );
   }
