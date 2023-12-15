@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jotdown/theme/theme_provider.dart';
 import 'package:jotdown/widgets/appbar.dart';
+import 'package:jotdown/widgets/search_bar.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,6 +28,11 @@ class _HomePageState extends State<HomePage> {
           isDarkMode: isDarkMode,
           toggleDarkMode: toggleTheme,
         ),
-        body: Container());
+        body: Container(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: Column(
+            children: [SearchNotes()],
+          ),
+        ));
   }
 }
