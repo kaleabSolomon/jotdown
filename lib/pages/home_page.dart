@@ -39,16 +39,22 @@ class _HomePageState extends State<HomePage> {
                 child: Center(
                     child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.7,
-                  child: GridView.builder(
-                      itemCount: 10,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 8.0,
-                              mainAxisSpacing: 8.0),
+                  child: ListView.builder(
+                      itemCount: 8,
                       itemBuilder: (BuildContext context, int index) {
-                        return const NoteTile();
+                        return NoteTile();
                       }),
+
+                  // child: GridView.builder(
+                  //     itemCount: 10,
+                  //     gridDelegate:
+                  //         const SliverGridDelegateWithFixedCrossAxisCount(
+                  //             crossAxisCount: 2,
+                  //             crossAxisSpacing: 8.0,
+                  //             mainAxisSpacing: 8.0),
+                  //     itemBuilder: (BuildContext context, int index) {
+                  //       return const NoteTile();
+                  //     }),
                 )),
               )
             ],
