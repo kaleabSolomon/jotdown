@@ -22,7 +22,7 @@ class _MyAppBarState extends State<MyAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       toolbarHeight: widget.height,
-      backgroundColor: Colors.green,
+      backgroundColor: Theme.of(context).colorScheme.background,
       title: Text(
         "Jot Down",
         style: TextStyle(
@@ -34,6 +34,7 @@ class _MyAppBarState extends State<MyAppBar> {
         IconButton(
           onPressed: widget.toggleDarkMode,
           icon: Icon(
+              color: Theme.of(context).colorScheme.secondary,
               size: 35,
               widget.isDarkMode
                   ? Icons.wb_sunny_outlined
