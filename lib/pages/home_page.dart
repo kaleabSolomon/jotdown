@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: MyAppBar(
           height: MediaQuery.of(context).size.height * 0.1,
@@ -42,19 +43,8 @@ class _HomePageState extends State<HomePage> {
                   child: ListView.builder(
                       itemCount: 8,
                       itemBuilder: (BuildContext context, int index) {
-                        return NoteTile();
+                        return const NoteTile();
                       }),
-
-                  // child: GridView.builder(
-                  //     itemCount: 10,
-                  //     gridDelegate:
-                  //         const SliverGridDelegateWithFixedCrossAxisCount(
-                  //             crossAxisCount: 2,
-                  //             crossAxisSpacing: 8.0,
-                  //             mainAxisSpacing: 8.0),
-                  //     itemBuilder: (BuildContext context, int index) {
-                  //       return const NoteTile();
-                  //     }),
                 )),
               )
             ],
