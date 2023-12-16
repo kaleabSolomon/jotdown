@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
 import 'package:jotdown/pages/home_page.dart';
 import 'package:jotdown/theme/theme_provider.dart';
-import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter("Notes_Box");
   runApp(ChangeNotifierProvider(
       create: (context) => ThemeProvider(), child: const MyApp()));
 }
