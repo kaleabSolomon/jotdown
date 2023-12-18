@@ -36,17 +36,33 @@ class _AddNotePageState extends State<AddNotePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(
-        title: "Add A Note",
-        height: MediaQuery.of(context).size.height * 0.1,
-        isDarkMode: isDarkMode,
-        toggleDarkMode: toggleTheme,
-        appBarActions: _appBarActions,
-      ),
-      body: Center(
-          child: Container(
-        child: Text("hello world"),
-      )),
-    );
+        appBar: MyAppBar(
+          title: "Add A Note",
+          height: MediaQuery.of(context).size.height * 0.1,
+          isDarkMode: isDarkMode,
+          toggleDarkMode: toggleTheme,
+          appBarActions: _appBarActions,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              TextField(
+                style: TextStyle(
+                    fontSize: 24, color: Theme.of(context).colorScheme.primary),
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                  // error: Text("Title is required"),
+                  hintText: 'Enter title here',
+                  hintStyle: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }
