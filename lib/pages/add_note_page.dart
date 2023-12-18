@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:jotdown/model/note.dart';
 import 'package:jotdown/theme/theme_provider.dart';
 import 'package:jotdown/widgets/appbar.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,7 @@ class AddNotePage extends StatefulWidget {
 
 class _AddNotePageState extends State<AddNotePage> {
   //FIXME: light-dark mode icons not interchanging
+
   bool isDarkMode = false;
 
   final TextEditingController _titleController = TextEditingController();
@@ -25,6 +27,7 @@ class _AddNotePageState extends State<AddNotePage> {
   List<Widget> _appBarActions = [];
   bool isTitleFieldEmpty = false;
   bool isContentFieldEmpty = false;
+  final notesBox = Hive.box<Note>('notesBox');
 
   @override
   void didChangeDependencies() {
@@ -48,7 +51,32 @@ class _AddNotePageState extends State<AddNotePage> {
                   isContentFieldEmpty = false;
                 });
 
-          // save notes to hive
+          if (!isTitleFieldEmpty && !isContentFieldEmpty) {
+            // get required data
+            String title = _titleController.text;
+            String content = _contentController.text;
+            DateTime createdAt = DateTime.now();
+
+            // create a note object
+
+            Note note =
+                Note(title: title, content: content, createdAt: createdAt);
+
+            print(note.toString());
+            // save notes to hive
+            try {
+              notesBox.add(note);
+            } catch (e) {
+              print('Error adding note to Hive: $e');
+            }
+
+            // clear textFields
+            _titleController.clear();
+            _contentController.clear();
+          }
+          notesBox.values.toList().forEach(
+                (element) => print(element.toString()),
+              );
         },
         icon: Icon(
             color: Theme.of(context).colorScheme.primary, size: 30, Icons.save),

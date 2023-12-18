@@ -25,4 +25,9 @@ class Note extends HiveObject {
   Map toMap() {
     return {"title": title, "content": content, "createdAt": createdAt};
   }
+
+  @override
+  String toString() {
+    return "\n  title: $title,\n  content: $content,\n  createdAt: $createdAt";
+  }
 }
