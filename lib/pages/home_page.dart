@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jotdown/pages/add_note_page.dart';
 import 'package:jotdown/theme/theme_provider.dart';
 import 'package:jotdown/widgets/appbar.dart';
 import 'package:jotdown/widgets/note_tile.dart';
@@ -27,7 +28,10 @@ class _HomePageState extends State<HomePage> {
     // initialize app bar actions
     _appBarActions = [
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const AddNotePage()));
+        },
         icon: Icon(
             color: Theme.of(context).colorScheme.primary, size: 40, Icons.add),
       ),
