@@ -19,6 +19,21 @@ class _HomePageState extends State<HomePage> {
     Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
   }
 
+  List<Widget> _appBarActions = [];
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // initialize app bar actions
+    _appBarActions = [
+      IconButton(
+        onPressed: () {},
+        icon: Icon(
+            color: Theme.of(context).colorScheme.primary, size: 40, Icons.add),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
@@ -29,6 +44,7 @@ class _HomePageState extends State<HomePage> {
           height: MediaQuery.of(context).size.height * 0.1,
           isDarkMode: isDarkMode,
           toggleDarkMode: toggleTheme,
+          appBarActions: _appBarActions,
         ),
         body: Container(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),

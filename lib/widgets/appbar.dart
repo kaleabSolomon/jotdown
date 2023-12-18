@@ -5,11 +5,13 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   final double height;
   final bool isDarkMode;
   VoidCallback toggleDarkMode;
+  List<Widget> appBarActions;
   MyAppBar(
       {super.key,
       required this.height,
       required this.isDarkMode,
-      required this.toggleDarkMode});
+      required this.toggleDarkMode,
+      required this.appBarActions});
 
   @override
   State<MyAppBar> createState() => _MyAppBarState();
@@ -31,13 +33,7 @@ class _MyAppBarState extends State<MyAppBar> {
             fontWeight: FontWeight.bold),
       ),
       actions: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
-              color: Theme.of(context).colorScheme.primary,
-              size: 40,
-              Icons.add),
-        ),
+        ...widget.appBarActions,
         IconButton(
           onPressed: widget.toggleDarkMode,
           icon: Icon(
