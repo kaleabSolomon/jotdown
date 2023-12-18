@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NoteTile extends StatefulWidget {
   const NoteTile({super.key});
@@ -45,7 +46,7 @@ class _NoteTileState extends State<NoteTile> {
               right: 0,
               bottom: 0,
               child: Text(
-                '${currentDate.year}-${currentDate.month}-${currentDate.day}',
+                DateFormat.yMMMd('en_US').format(currentDate),
                 style: TextStyle(color: Theme.of(context).colorScheme.primary),
               ),
             )
