@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class NoteTile extends StatefulWidget {
-  const NoteTile({super.key});
+  final String title;
+  final String content;
+  final DateTime createdAt;
+  const NoteTile(
+      {super.key,
+      required this.title,
+      required this.content,
+      required this.createdAt});
 
   @override
   State<NoteTile> createState() => _NoteTileState();
 }
 
 class _NoteTileState extends State<NoteTile> {
-  DateTime currentDate = DateTime.now();
+  // DateTime currentDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +36,15 @@ class _NoteTileState extends State<NoteTile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Note Title",
+                  widget.title,
                   style: TextStyle(
                       color: Theme.of(context).colorScheme.primary,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2),
                 ),
-                const Text(
-                  "note content  ",
+                Text(
+                  widget.content,
                   maxLines: 2,
                 ),
               ],
@@ -46,7 +53,8 @@ class _NoteTileState extends State<NoteTile> {
               right: 0,
               bottom: 0,
               child: Text(
-                DateFormat.yMMMd('en_US').format(currentDate),
+                //TODO: display date only if next day. else display time
+                DateFormat.yMMMd('en_US').format(widget.createdAt),
                 style: TextStyle(color: Theme.of(context).colorScheme.primary),
               ),
             )

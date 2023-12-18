@@ -59,7 +59,11 @@ class _HomePageState extends State<HomePage> {
                   child: ListView.builder(
                       itemCount: 8,
                       itemBuilder: (BuildContext context, int index) {
-                        return const NoteTile();
+                        return NoteTile(
+                          title: 'here',
+                          content: 'note content',
+                          createdAt: DateTime.now(),
+                        );
                       }),
                 )),
               )
