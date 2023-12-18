@@ -66,6 +66,7 @@ class _AddNotePageState extends State<AddNotePage> {
             // save notes to hive
             try {
               notesBox.add(note);
+              //TODO: add some kind of message that the note is added or failed
             } catch (e) {
               print('Error adding note to Hive: $e');
             }
@@ -74,9 +75,6 @@ class _AddNotePageState extends State<AddNotePage> {
             _titleController.clear();
             _contentController.clear();
           }
-          notesBox.values.toList().forEach(
-                (element) => print(element.toString()),
-              );
         },
         icon: Icon(
             color: Theme.of(context).colorScheme.primary, size: 30, Icons.save),

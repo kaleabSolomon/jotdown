@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:jotdown/model/note.dart';
 import 'package:jotdown/pages/add_note_page.dart';
 import 'package:jotdown/theme/theme_provider.dart';
 import 'package:jotdown/widgets/appbar.dart';
@@ -40,6 +42,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final notesBox = Hive.box<Note>('notesBox');
+
+    // Get all the notes from the box
+    List<Note> notes = notesBox.values.toList();
     isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -62,12 +68,12 @@ class _HomePageState extends State<HomePage> {
                     child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.7,
                   child: ListView.builder(
-                      itemCount: 8,
+                      itemCount: notes.length,
                       itemBuilder: (BuildContext context, int index) {
                         return NoteTile(
-                          title: 'here',
-                          content: 'note content',
-                          createdAt: DateTime.now(),
+                          title: notes[index].title,
+                          content: notes[index].content,
+                          createdAt: notes[index].createdAt,
                         );
                       }),
                 )),
