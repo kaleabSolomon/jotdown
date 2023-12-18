@@ -15,9 +15,11 @@ class Note extends HiveObject {
 
   factory Note.fromMap(Map notes) {
     return Note(
-        title: notes["title"],
-        content: notes['content'],
-        createdAt: notes['createdAt']);
+      title: notes["title"] ?? "",
+      content: notes['content'] ?? "",
+      createdAt:
+          DateTime.parse(notes['createdAt'] ?? DateTime.now().toString()),
+    );
   }
 
   Map toMap() {

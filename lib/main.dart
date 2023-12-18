@@ -8,7 +8,7 @@ import 'package:jotdown/theme/theme_provider.dart';
 void main() async {
   await Hive.initFlutter();
 
-  var box = await Hive.openBox("notes_box");
+  var _mybox = await Hive.openBox("notes_box");
   runApp(ChangeNotifierProvider(
       create: (context) => ThemeProvider(), child: const MyApp()));
 }

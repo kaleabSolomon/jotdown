@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:jotdown/theme/theme_provider.dart';
 import 'package:jotdown/widgets/appbar.dart';
 import 'package:provider/provider.dart';
@@ -47,8 +48,6 @@ class _AddNotePageState extends State<AddNotePage> {
                   isContentFieldEmpty = false;
                 });
 
-          print(
-              'title: ${_titleController.text.trim()} and content:${_contentController.text.trim()}');
           // save notes to hive
         },
         icon: Icon(
