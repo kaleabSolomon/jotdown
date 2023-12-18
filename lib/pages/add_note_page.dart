@@ -54,13 +54,31 @@ class _AddNotePageState extends State<AddNotePage> {
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10),
                   // error: Text("Title is required"),
-                  hintText: 'Enter title here',
+                  hintText: 'Enter Title Here',
                   hintStyle: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-              )
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Expanded(
+                  child: TextField(
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary, fontSize: 18),
+                maxLines: null,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                  hintText: "Enter Content Here",
+                  hintStyle: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ))
             ],
           ),
         ));
