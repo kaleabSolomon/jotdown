@@ -45,6 +45,7 @@ class _HomePageState extends State<HomePage> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: MyAppBar(
+          title: "Jot Down",
           height: MediaQuery.of(context).size.height * 0.1,
           isDarkMode: isDarkMode,
           toggleDarkMode: toggleTheme,

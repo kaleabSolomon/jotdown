@@ -11,6 +11,7 @@ class AddNotePage extends StatefulWidget {
 }
 
 class _AddNotePageState extends State<AddNotePage> {
+  //FIXME: light-dark mode icons not interchanging
   bool isDarkMode = false;
 
   void toggleTheme() {
@@ -25,11 +26,9 @@ class _AddNotePageState extends State<AddNotePage> {
     // initialize app bar actions
     _appBarActions = [
       IconButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
+        onPressed: () {},
         icon: Icon(
-            color: Theme.of(context).colorScheme.primary, size: 40, Icons.save),
+            color: Theme.of(context).colorScheme.primary, size: 30, Icons.save),
       ),
     ];
   }
@@ -38,6 +37,7 @@ class _AddNotePageState extends State<AddNotePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
+        title: "Add A Note",
         height: MediaQuery.of(context).size.height * 0.1,
         isDarkMode: isDarkMode,
         toggleDarkMode: toggleTheme,

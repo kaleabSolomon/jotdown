@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   final double height;
+  final String title;
   final bool isDarkMode;
   VoidCallback toggleDarkMode;
   List<Widget> appBarActions;
   MyAppBar(
       {super.key,
       required this.height,
+      required this.title,
       required this.isDarkMode,
       required this.toggleDarkMode,
       required this.appBarActions});
@@ -26,7 +28,7 @@ class _MyAppBarState extends State<MyAppBar> {
       toolbarHeight: widget.height,
       backgroundColor: Theme.of(context).colorScheme.background,
       title: Text(
-        "Jot Down",
+        widget.title,
         style: TextStyle(
             color: Theme.of(context).colorScheme.primary,
             letterSpacing: 2,
