@@ -15,19 +15,41 @@ class _NoteTileState extends State<NoteTile> {
     return Container(
         margin: EdgeInsets.all(8),
         width: MediaQuery.of(context).size.width * 0.4,
-        height: 100,
+        // TODO: make the height dynamic
+        height: 110,
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(14),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("note title"),
-            Text("note content"),
-            Text('${currentDate.year}-${currentDate.month}-${currentDate.day}')
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: Stack(children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Note Title",
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2),
+                ),
+                const Text(
+                  "note content  ",
+                  maxLines: 2,
+                ),
+              ],
+            ),
+            Positioned(
+              right: 0,
+              bottom: 0,
+              child: Text(
+                '${currentDate.year}-${currentDate.month}-${currentDate.day}',
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
+              ),
+            )
+          ]),
         ));
   }
 }
