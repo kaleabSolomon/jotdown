@@ -132,7 +132,7 @@ class _AddNotePageState extends State<AddNotePage> {
       decoration: InputDecoration(
         border: InputBorder.none,
         contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-        errorText: isTitleFieldEmpty ? "A note should have a content" : null,
+        errorText: isContentFieldEmpty ? "A note should have a content" : null,
         hintText: "Enter Content Here",
         hintStyle: const TextStyle(
           fontSize: 18,
