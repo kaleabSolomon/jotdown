@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:jotdown/model/note.dart';
 import 'package:jotdown/pages/add_note_page.dart';
+import 'package:jotdown/pages/note_page.dart';
 import 'package:jotdown/theme/theme_provider.dart';
 import 'package:jotdown/widgets/appbar.dart';
 import 'package:jotdown/widgets/note_tile.dart';
@@ -75,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => AddNotePage()));
+                                    builder: (context) => NotePage()));
                           },
                           child: NoteTile(
                             title: notes[index].title,

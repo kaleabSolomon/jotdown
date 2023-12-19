@@ -61,8 +61,6 @@ class _AddNotePageState extends State<AddNotePage> {
 
             Note note =
                 Note(title: title, content: content, createdAt: createdAt);
-
-            print(note.toString());
             // save notes to hive
             try {
               notesBox.add(note);
