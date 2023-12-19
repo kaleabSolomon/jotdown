@@ -70,10 +70,18 @@ class _HomePageState extends State<HomePage> {
                   child: ListView.builder(
                       itemCount: notes.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return NoteTile(
-                          title: notes[index].title,
-                          content: notes[index].content,
-                          createdAt: notes[index].createdAt,
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AddNotePage()));
+                          },
+                          child: NoteTile(
+                            title: notes[index].title,
+                            content: notes[index].content,
+                            createdAt: notes[index].createdAt,
+                          ),
                         );
                       }),
                 )),
