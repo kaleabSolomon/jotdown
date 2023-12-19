@@ -3,6 +3,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:jotdown/model/note.dart';
 import 'package:jotdown/theme/theme_provider.dart';
 import 'package:jotdown/widgets/appbar.dart';
+import 'package:jotdown/widgets/contet_field.dart';
+import 'package:jotdown/widgets/title_field.dart';
 import 'package:provider/provider.dart';
 
 class AddNotePage extends StatefulWidget {
@@ -95,50 +97,20 @@ class _AddNotePageState extends State<AddNotePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              titleField(),
+              TitleField(
+                titleController: _titleController,
+                isTitleFieldEmpty: isTitleFieldEmpty,
+              ),
               const SizedBox(
                 height: 16,
               ),
-              Expanded(child: contentField())
+              Expanded(
+                  child: ContentField(
+                contentController: _contentController,
+                isContentFieldEmpty: isContentFieldEmpty,
+              ))
             ],
           ),
         ));
-  }
-
-  Widget titleField() {
-    return TextField(
-      controller: _titleController,
-      style:
-          TextStyle(fontSize: 24, color: Theme.of(context).colorScheme.primary),
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-        // error: Text("Title is required"),
-        hintText: 'Enter Title Here',
-        errorText: isTitleFieldEmpty ? "a title is required" : null,
-        hintStyle: const TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
-    );
-  }
-
-  Widget contentField() {
-    return TextField(
-      controller: _contentController,
-      style:
-          TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 18),
-      maxLines: null,
-      decoration: InputDecoration(
-        border: InputBorder.none,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-        errorText: isContentFieldEmpty ? "A note should have a content" : null,
-        hintText: "Enter Content Here",
-        hintStyle: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
-    );
   }
 }
