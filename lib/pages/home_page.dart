@@ -101,6 +101,25 @@ class _HomePageState extends State<HomePage> {
                                                 setState(() {
                                                   notesBox.deleteAt(index);
                                                 });
+
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                        const SnackBar(
+                                                  content: Text(
+                                                    "Note deleted",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  backgroundColor:
+                                                      Color.fromARGB(
+                                                          255, 210, 62, 62),
+                                                  behavior:
+                                                      SnackBarBehavior.floating,
+                                                  duration:
+                                                      Duration(seconds: 2),
+                                                ));
                                                 Navigator.pop(context);
                                               },
                                               child: const Text("Delete")),
