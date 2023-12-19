@@ -51,7 +51,11 @@ class _NotePageState extends State<NotePage> {
               size: 30,
               Icons.save)),
       IconButton(
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              isEditing = !isEditing;
+            });
+          },
           icon: Icon(
               color: Theme.of(context).colorScheme.primary,
               size: 30,
@@ -74,11 +78,12 @@ class _NotePageState extends State<NotePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            titleField(),
+            isEditing ? titleField() : Text(widget.note.title),
             const SizedBox(
               height: 16,
             ),
-            Expanded(child: contentField())
+            Expanded(
+                child: isEditing ? contentField() : Text(widget.note.content))
           ],
         ),
       ),
