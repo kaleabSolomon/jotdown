@@ -5,11 +5,12 @@ class NoteTile extends StatefulWidget {
   final String title;
   final String content;
   final DateTime createdAt;
-  const NoteTile(
-      {super.key,
-      required this.title,
-      required this.content,
-      required this.createdAt});
+  const NoteTile({
+    super.key,
+    required this.title,
+    required this.content,
+    required this.createdAt,
+  });
 
   @override
   State<NoteTile> createState() => _NoteTileState();

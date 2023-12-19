@@ -79,7 +79,32 @@ class _HomePageState extends State<HomePage> {
                                     builder: (context) => NotePage(
                                           note: notes[index],
                                         )));
-                            // print(notes[index].toString());
+                          },
+                          onLongPress: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text("Delete Note?"),
+                                    content: const Text(
+                                        "Are you sure you want to delete this note?"),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              notesBox.deleteAt(index);
+                                            });
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text("Delete")),
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text("Cancel"))
+                                    ],
+                                  );
+                                });
                           },
                           child: NoteTile(
                             title: notes[index].title,
