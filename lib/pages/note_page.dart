@@ -77,15 +77,37 @@ class _NotePageState extends State<NotePage> {
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            isEditing ? titleField() : Text(widget.note.title),
+            isEditing ? titleField() : titleText(),
             const SizedBox(
               height: 16,
             ),
-            Expanded(
-                child: isEditing ? contentField() : Text(widget.note.content))
+            Expanded(child: isEditing ? contentField() : contentText())
           ],
         ),
+      ),
+    );
+  }
+
+  Widget titleText() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Text(
+        widget.note.title,
+        style: TextStyle(
+            fontSize: 24, color: Theme.of(context).colorScheme.primary),
+      ),
+    );
+  }
+
+  Widget contentText() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Text(
+        widget.note.content,
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.primary, fontSize: 18),
       ),
     );
   }
