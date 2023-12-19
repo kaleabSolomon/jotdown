@@ -16,6 +16,8 @@ class AddNotePage extends StatefulWidget {
 
 class _AddNotePageState extends State<AddNotePage> {
   //FIXME: light-dark mode icons not interchanging
+  //TODO: add undo to deletion
+  // TODO: display last entered note first
 
   bool isDarkMode = false;
 
@@ -66,7 +68,16 @@ class _AddNotePageState extends State<AddNotePage> {
             // save notes to hive
             try {
               notesBox.add(note);
-              //TODO: add some kind of message that the note is added or failed
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text(
+                  "1 Note Created",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+                backgroundColor: Color.fromARGB(255, 70, 214, 75),
+                behavior: SnackBarBehavior.floating,
+                duration: Duration(seconds: 2),
+              ));
             } catch (e) {
               print('Error adding note to Hive: $e');
             }
@@ -74,6 +85,8 @@ class _AddNotePageState extends State<AddNotePage> {
             // clear textFields
             _titleController.clear();
             _contentController.clear();
+
+            Navigator.of(context).pop();
           }
         },
         icon: Icon(
