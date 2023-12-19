@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive/hive.dart';
 import 'package:jotdown/model/note.dart';
 import 'package:jotdown/pages/add_note_page.dart';
@@ -68,51 +69,57 @@ class _HomePageState extends State<HomePage> {
                 child: Center(
                     child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.7,
-                  child: ListView.builder(
-                      itemCount: notes.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => NotePage(
-                                          note: notes[index],
-                                        )));
-                          },
-                          onLongPress: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: const Text("Delete Note?"),
-                                    content: const Text(
-                                        "Are you sure you want to delete this note?"),
-                                    actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              notesBox.deleteAt(index);
-                                            });
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text("Delete")),
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text("Cancel"))
-                                    ],
-                                  );
-                                });
-                          },
-                          child: NoteTile(
-                            title: notes[index].title,
-                            content: notes[index].content,
-                            createdAt: notes[index].createdAt,
-                          ),
-                        );
-                      }),
+                  child: notes.isEmpty
+                      ? SvgPicture.asset(
+                          "assets/no_notes.svg",
+                          height: 200,
+                          color: Theme.of(context).colorScheme.primary,
+                        )
+                      : ListView.builder(
+                          itemCount: notes.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => NotePage(
+                                              note: notes[index],
+                                            )));
+                              },
+                              onLongPress: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text("Delete Note?"),
+                                        content: const Text(
+                                            "Are you sure you want to delete this note?"),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  notesBox.deleteAt(index);
+                                                });
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text("Delete")),
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text("Cancel"))
+                                        ],
+                                      );
+                                    });
+                              },
+                              child: NoteTile(
+                                title: notes[index].title,
+                                content: notes[index].content,
+                                createdAt: notes[index].createdAt,
+                              ),
+                            );
+                          }),
                 )),
               )
             ],
