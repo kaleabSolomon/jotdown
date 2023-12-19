@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                   child: notes.isEmpty
                       ? SvgPicture.asset(
                           "assets/no_notes.svg",
-                          height: 200,
+                          height: 150,
                           color: Theme.of(context).colorScheme.primary,
                         )
                       : ListView.builder(

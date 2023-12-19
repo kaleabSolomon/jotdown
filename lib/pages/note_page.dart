@@ -21,15 +21,14 @@ class _NotePageState extends State<NotePage> {
   bool isEditing = false;
   bool isTitleFieldEmpty = false;
   bool isContentFieldEmpty = false;
+  late Box<Note> notesBox;
+
+  List<Widget> _appBarActions = [];
 
   bool isDarkMode = false;
   void toggleTheme() {
     Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
   }
-
-  late Box<Note> notesBox;
-
-  List<Widget> _appBarActions = [];
 
   @override
   void initState() {
@@ -57,15 +56,31 @@ class _NotePageState extends State<NotePage> {
               size: 30,
               Icons.save)),
       IconButton(
-          // TODO: note still updates when back
-          // FIXME: updating without a note or title
           onPressed: () {
+            _titleController.text.isEmpty
+                ? setState(() {
+                    isTitleFieldEmpty = true;
+                  })
+                : setState(() {
+                    isTitleFieldEmpty = false;
+                  });
+            _contentController.text.isEmpty
+                ? setState(() {
+                    isContentFieldEmpty = true;
+                  })
+                : setState(() {
+                    isContentFieldEmpty = false;
+                  });
+
             setState(() {
-              if (isEditing) {
-                widget.note.title = _titleController.text;
-                widget.note.content = _contentController.text;
+              if (!isTitleFieldEmpty && !isContentFieldEmpty) {
+                if (isEditing) {
+                  widget.note.title = _titleController.text;
+                  widget.note.content = _contentController.text;
+                }
+
+                isEditing = !isEditing;
               }
-              isEditing = !isEditing;
             });
           },
           icon: Icon(
@@ -93,39 +108,73 @@ class _NotePageState extends State<NotePage> {
     Navigator.pop(context);
   }
 
+//TODO: still needs work. unsaved notes are being displayed
+  void _showDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Unsaved Changes"),
+            content: const Text(
+                "Are you sure you want to go back? unsaved changes might be lost"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Go Back")),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Cancel"))
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MyAppBar(
-        title: "Your Note",
-        height: MediaQuery.of(context).size.height * 0.1,
-        isDarkMode: isDarkMode,
-        toggleDarkMode: toggleTheme,
-        appBarActions: _appBarActions,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            isEditing
-                ? TitleField(
-                    titleController: _titleController,
-                    isTitleFieldEmpty: isTitleFieldEmpty,
-                  )
-                : titleText(),
-            const SizedBox(
-              height: 16,
-            ),
-            Expanded(
-                child: isEditing
-                    ? ContentField(
-                        contentController: _contentController,
-                        isContentFieldEmpty: isContentFieldEmpty,
-                      )
-                    : contentText())
-          ],
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (bool didPop) async {
+        if (didPop) return;
+
+        _showDialog();
+      },
+      child: Scaffold(
+        appBar: MyAppBar(
+          title: "Your Note",
+          height: MediaQuery.of(context).size.height * 0.1,
+          isDarkMode: isDarkMode,
+          toggleDarkMode: toggleTheme,
+          appBarActions: _appBarActions,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              isEditing
+                  ? TitleField(
+                      titleController: _titleController,
+                      isTitleFieldEmpty: isTitleFieldEmpty,
+                    )
+                  : titleText(),
+              const SizedBox(
+                height: 16,
+              ),
+              Expanded(
+                  child: isEditing
+                      ? ContentField(
+                          contentController: _contentController,
+                          isContentFieldEmpty: isContentFieldEmpty,
+                        )
+                      : contentText())
+            ],
+          ),
         ),
       ),
     );
