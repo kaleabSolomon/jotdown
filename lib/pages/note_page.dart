@@ -55,6 +55,10 @@ class _NotePageState extends State<NotePage> {
       IconButton(
           onPressed: () {
             setState(() {
+              if (isEditing) {
+                widget.note.title = _titleController.text;
+                widget.note.content = _contentController.text;
+              }
               isEditing = !isEditing;
             });
           },
