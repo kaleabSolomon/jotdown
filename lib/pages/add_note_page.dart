@@ -95,44 +95,50 @@ class _AddNotePageState extends State<AddNotePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              TextField(
-                controller: _titleController,
-                style: TextStyle(
-                    fontSize: 24, color: Theme.of(context).colorScheme.primary),
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-                  // error: Text("Title is required"),
-                  hintText: 'Enter Title Here',
-                  errorText: isTitleFieldEmpty ? "a title is required" : null,
-                  hintStyle: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
+              titleField(),
               const SizedBox(
                 height: 16,
               ),
-              Expanded(
-                  child: TextField(
-                controller: _contentController,
-                style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary, fontSize: 18),
-                maxLines: null,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-                  errorText:
-                      isTitleFieldEmpty ? "A note should have a content" : null,
-                  hintText: "Enter Content Here",
-                  hintStyle: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ))
+              Expanded(child: contentField())
             ],
           ),
         ));
+  }
+
+  Widget titleField() {
+    return TextField(
+      controller: _titleController,
+      style:
+          TextStyle(fontSize: 24, color: Theme.of(context).colorScheme.primary),
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+        // error: Text("Title is required"),
+        hintText: 'Enter Title Here',
+        errorText: isTitleFieldEmpty ? "a title is required" : null,
+        hintStyle: const TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+    );
+  }
+
+  Widget contentField() {
+    return TextField(
+      controller: _contentController,
+      style:
+          TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 18),
+      maxLines: null,
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+        errorText: isTitleFieldEmpty ? "A note should have a content" : null,
+        hintText: "Enter Content Here",
+        hintStyle: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+    );
   }
 }
