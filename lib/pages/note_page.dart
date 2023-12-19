@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:jotdown/model/note.dart';
 import 'package:jotdown/theme/theme_provider.dart';
 import 'package:jotdown/widgets/appbar.dart';
@@ -26,11 +27,14 @@ class _NotePageState extends State<NotePage> {
     Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
   }
 
+  late Box<Note> notesBox;
+
   List<Widget> _appBarActions = [];
 
   @override
   void initState() {
     super.initState();
+    notesBox = Hive.box<Note>('notesBox');
     _titleController = TextEditingController(text: widget.note.title);
     _contentController = TextEditingController(text: widget.note.content);
   }
@@ -47,12 +51,14 @@ class _NotePageState extends State<NotePage> {
     super.didChangeDependencies();
     _appBarActions = [
       IconButton(
-          onPressed: () {},
+          onPressed: updateNote,
           icon: Icon(
               color: Theme.of(context).colorScheme.primary,
               size: 30,
               Icons.save)),
       IconButton(
+          // TODO: note still updates when back
+          // FIXME: updating without a note or title
           onPressed: () {
             setState(() {
               if (isEditing) {
@@ -67,6 +73,24 @@ class _NotePageState extends State<NotePage> {
               size: 30,
               isEditing ? Icons.done : Icons.edit))
     ];
+  }
+
+  void updateNote() {
+    for (int i = 0; i < notesBox.length; i++) {
+      Note selectedNote = notesBox.getAt(i)!;
+      if (selectedNote.title == widget.note.title &&
+          selectedNote.createdAt == widget.note.createdAt) {
+        selectedNote.title = _titleController.text;
+        selectedNote.content = _contentController.text;
+        selectedNote.createdAt = DateTime.now();
+
+        // update the note
+        notesBox.putAt(i, selectedNote);
+        break;
+      }
+    }
+
+    Navigator.pop(context);
   }
 
   @override
