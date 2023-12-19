@@ -16,6 +16,8 @@ class _NotePageState extends State<NotePage> {
   late TextEditingController _titleController;
   late TextEditingController _contentController;
   bool isEditing = false;
+  bool isTitleFieldEmpty = false;
+  bool isContentFieldEmpty = false;
 
   bool isDarkMode = false;
   void toggleTheme() {
@@ -23,6 +25,7 @@ class _NotePageState extends State<NotePage> {
   }
 
   List<Widget> _appBarActions = [];
+
   @override
   void initState() {
     super.initState();
@@ -40,6 +43,20 @@ class _NotePageState extends State<NotePage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _appBarActions = [
+      IconButton(
+          onPressed: () {},
+          icon: Icon(
+              color: Theme.of(context).colorScheme.primary,
+              size: 30,
+              Icons.save)),
+      IconButton(
+          onPressed: () {},
+          icon: Icon(
+              color: Theme.of(context).colorScheme.primary,
+              size: 30,
+              isEditing ? Icons.done : Icons.edit))
+    ];
   }
 
   @override

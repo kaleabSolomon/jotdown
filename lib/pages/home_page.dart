@@ -76,7 +76,10 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => NotePage()));
+                                    builder: (context) => NotePage(
+                                          note: notes[index],
+                                        )));
+                            // print(notes[index].toString());
                           },
                           child: NoteTile(
                             title: notes[index].title,
