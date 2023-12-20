@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
     isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
 
     // Get all the notes from the box
-    List<Note> notes = notesBox.values.toList();
+    List<Note> notes = List.from(notesBox.values.toList().reversed);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Theme.of(context).colorScheme.background,
@@ -90,6 +90,7 @@ class _HomePageState extends State<HomePage> {
                                     MaterialPageRoute(
                                         builder: (context) => NotePage(
                                               note: notes[index],
+                                              isDarkMode: isDarkMode,
                                             )));
                               },
                               onLongPress: () {

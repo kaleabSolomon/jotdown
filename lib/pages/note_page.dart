@@ -9,7 +9,8 @@ import 'package:provider/provider.dart';
 
 class NotePage extends StatefulWidget {
   final Note note;
-  const NotePage({super.key, required this.note});
+  final bool isDarkMode;
+  const NotePage({super.key, required this.note, required this.isDarkMode});
 
   @override
   State<NotePage> createState() => _NotePageState();
@@ -25,7 +26,6 @@ class _NotePageState extends State<NotePage> {
 
   List<Widget> _appBarActions = [];
 
-  bool isDarkMode = false;
   void toggleTheme() {
     Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
   }
@@ -147,7 +147,7 @@ class _NotePageState extends State<NotePage> {
         appBar: MyAppBar(
           title: "Your Note",
           height: MediaQuery.of(context).size.height * 0.1,
-          isDarkMode: isDarkMode,
+          isDarkMode: widget.isDarkMode,
           toggleDarkMode: toggleTheme,
           appBarActions: _appBarActions,
         ),
