@@ -10,35 +10,24 @@ class Note extends HiveObject {
   late String content;
   @HiveField(2)
   late DateTime createdAt;
-  @HiveField(3)
-  late bool isPrivate;
 
-  Note(
-      {required this.title,
-      required this.content,
-      required this.createdAt,
-      required this.isPrivate});
+  Note({required this.title, required this.content, required this.createdAt});
 
   factory Note.fromMap(Map notes) {
     return Note(
-        title: notes["title"] ?? "",
-        content: notes['content'] ?? "",
-        createdAt:
-            DateTime.parse(notes['createdAt'] ?? DateTime.now().toString()),
-        isPrivate: notes['isPrivate'] ?? "");
+      title: notes["title"] ?? "",
+      content: notes['content'] ?? "",
+      createdAt:
+          DateTime.parse(notes['createdAt'] ?? DateTime.now().toString()),
+    );
   }
 
   Map toMap() {
-    return {
-      "title": title,
-      "content": content,
-      "createdAt": createdAt,
-      "isPrivate": isPrivate
-    };
+    return {"title": title, "content": content, "createdAt": createdAt};
   }
 
   @override
   String toString() {
-    return "\n  title: $title,\n  content: $content,\n  createdAt: $createdAt, \n isPrivate:$isPrivate";
+    return "\n  title: $title,\n  content: $content,\n  createdAt: $createdAt";
   }
 }

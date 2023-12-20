@@ -60,10 +60,10 @@ class _AddNotePageState extends State<AddNotePage> {
             // create a note object
 
             Note note = Note(
-                title: title,
-                content: content,
-                createdAt: createdAt,
-                isPrivate: isPrivate);
+              title: title,
+              content: content,
+              createdAt: createdAt,
+            );
             // save notes to hive
             try {
               notesBox.add(note);
@@ -91,13 +91,6 @@ class _AddNotePageState extends State<AddNotePage> {
         icon: Icon(
             color: Theme.of(context).colorScheme.primary, size: 30, Icons.save),
       ),
-      IconButton(
-        onPressed: () {},
-        icon: Icon(
-            color: Theme.of(context).colorScheme.primary,
-            size: 30,
-            isPrivate ? Icons.lock : Icons.lock_open),
-      )
     ];
   }
 
