@@ -1,16 +1,47 @@
-# jotdown
+# JotDown - A Simple Note-Taking App
 
-A new Flutter project.
+JotDown is a simple note-taking Flutter application that allows users to create, store, and manage their notes efficiently. It utilizes the Hive database for local storage, providing a seamless and efficient note-taking experience.
+
+## Features
+
+- **Create Notes**: Easily create new notes with titles and content.
+- **Edit and Delete**: Modify existing notes or remove them when necessary.
+- **Search Functionality**: Quickly find notes by searching through titles.
+- **Timestamps**: Display creation times with relative durations (e.g., "Just now," "3 minutes ago").
+
+## Technologies Used
+
+- **Flutter**: UI toolkit for building natively compiled applications for mobile, web, and desktop.
+- **Hive**: Lightweight NoSQL database for local storage in Flutter applications.
+- **Dart**: Programming language used for Flutter app development.
+
+## ScreenShots
+
+![Home Screen Light](assets/screenshots/homePage_light.png)
+![Home Screen Dark](assets/screenshots/homePage_dark.png)
+![Note Details](assets/screenshots/noteDetails.png)
+![Add Notes](assets/screenshots/addNote.png)
+![Delete Notes](assets/screenshots/deleteNote.png)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/kaleabSolomon/jotdown.git
+   ```
+2. **Navigate to the project**:
+   ````bash
+   cd JotDown/
+   ```
+   ````
+3. **Install dependencies**:
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+   flutter pub get
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+4. **Run The App**:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+   flutter run
+```
