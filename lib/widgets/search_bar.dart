@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SearchNotes extends StatefulWidget {
-  const SearchNotes({super.key});
+  final TextEditingController controller;
+
+  const SearchNotes({super.key, required this.controller});
 
   @override
   State<SearchNotes> createState() => _SearchBarState();
@@ -19,6 +21,7 @@ class _SearchBarState extends State<SearchNotes> {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
         child: SearchBar(
+          controller: widget.controller,
           backgroundColor: MaterialStateProperty.resolveWith<Color?>(
               (Set<MaterialState> states) {
             return Theme.of(context).colorScheme.tertiary;

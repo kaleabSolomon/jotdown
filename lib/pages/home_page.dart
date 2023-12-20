@@ -26,6 +26,8 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> _appBarActions = [];
 
+  TextEditingController searchBarController = TextEditingController();
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -50,10 +52,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final notesBox = Hive.box<Note>('notesBox');
-    isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
+    final String keyWord = searchBarController.text;
 
+    isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
+    List<Note> results = notesBox.values
+        .where(
+            (note) => note.title.toLowerCase().contains(keyWord.toLowerCase()))
+        .toList();
     // Get all the notes from the box
-    List<Note> notes = List.from(notesBox.values.toList().reversed);
+    List<Note> notes = List.from(results.reversed);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Theme.of(context).colorScheme.background,
@@ -68,7 +75,7 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: Column(
             children: [
-              const SearchNotes(),
+              SearchNotes(controller: searchBarController),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: Center(
