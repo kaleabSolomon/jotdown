@@ -17,11 +17,11 @@ JotDown is a simple note-taking Flutter application that allows users to create,
 
 ## ScreenShots
 
-(<img src="assets/screenshots/" alt="Home Screen" width="300">)
-![Home Screen Dark](assets/screenshots/homePage_dark.png)
-![Note Details](assets/screenshots/noteDetails.png)
-![Add Notes](assets/screenshots/addNote.png)
-![Delete Notes](assets/screenshots/deleteNote.png)
+<img src="/assets/screenshots/homePage_dark.png" alt="Home Screen" width="300">
+<img src="/assets/screenshots/homePage.light.png" alt="Home Screen Light" width="300">
+<img src="/assets/screenshots/noteDetails.png" alt="note detail" width="300">
+<img src="/assets/screenshots/addNote.png" alt="add note" width="300">
+<img src="/assets/screenshots/deleteNote.png" alt="delete note" width="300">
 
 ## Getting Started
 
