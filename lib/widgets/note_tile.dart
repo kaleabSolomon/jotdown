@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-//FIXME: after editing note, time doesn't adjust immediately
 class NoteTile extends StatefulWidget {
   final String title;
   final String content;
@@ -23,12 +22,11 @@ class _NoteTileState extends State<NoteTile> {
   late Timer _timer;
   String formattedDuration = "";
 
-  // DateTime currentDate = DateTime.now();
   @override
   void initState() {
     super.initState();
     updateDuration();
-    _timer = Timer.periodic(const Duration(seconds: 60), (Timer t) {
+    _timer = Timer.periodic(const Duration(seconds: 2), (Timer t) {
       updateDuration();
     });
   }
