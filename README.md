@@ -30,10 +30,13 @@ JotDown is a simple note-taking Flutter application that allows users to create,
    git clone https://github.com/kaleabSolomon/jotdown.git
    ```
 2. **Navigate to the project**:
+
    ````bash
    cd JotDown/
    ```
+
    ````
+
 3. **Install dependencies**:
 
 ```bash
