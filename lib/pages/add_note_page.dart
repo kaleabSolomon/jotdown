@@ -53,8 +53,8 @@ class _AddNotePageState extends State<AddNotePage> {
 
           if (!isTitleFieldEmpty && !isContentFieldEmpty) {
             // get required data
-            String title = _titleController.text;
-            String content = _contentController.text;
+            String title = _titleController.text.trim();
+            String content = _contentController.text.trim();
             DateTime createdAt = DateTime.now();
 
             // create a note object

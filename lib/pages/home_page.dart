@@ -112,7 +112,12 @@ class _HomePageState extends State<HomePage> {
                                           TextButton(
                                               onPressed: () {
                                                 setState(() {
-                                                  notesBox.deleteAt(index);
+                                                  notesBox.deleteAt(notesBox
+                                                          .values
+                                                          .toList()
+                                                          .length -
+                                                      1 -
+                                                      index);
                                                 });
 
                                                 ScaffoldMessenger.of(context)
