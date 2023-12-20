@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+//FIXME: after editing note, time doesn't adjust immediately
 class NoteTile extends StatefulWidget {
   final String title;
   final String content;
@@ -17,12 +20,44 @@ class NoteTile extends StatefulWidget {
 }
 
 class _NoteTileState extends State<NoteTile> {
+  late Timer _timer;
+  String formattedDuration = "";
+
   // DateTime currentDate = DateTime.now();
+  @override
+  void initState() {
+    super.initState();
+    updateDuration();
+    _timer = Timer.periodic(const Duration(seconds: 60), (Timer t) {
+      updateDuration();
+    });
+  }
+
+  void updateDuration() {
+    Duration difference = DateTime.now().difference(widget.createdAt);
+    setState(() {
+      if (difference.inSeconds < 60) {
+        formattedDuration = "Just Now";
+      } else if (difference.inSeconds >= 60 && difference.inMinutes < 60) {
+        formattedDuration = "${difference.inMinutes} minutes ago";
+      } else if (difference.inMinutes >= 60 && difference.inHours < 6) {
+        formattedDuration = "${difference.inHours} hours ago";
+      } else {
+        DateFormat.yMMMd('en_US').format(widget.createdAt);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel(); // Cancel the timer when the widget is disposed
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(8),
+        margin: const EdgeInsets.all(8),
         width: MediaQuery.of(context).size.width * 0.4,
         // TODO: make the height dynamic
         height: 110,
@@ -54,8 +89,7 @@ class _NoteTileState extends State<NoteTile> {
               right: 0,
               bottom: 0,
               child: Text(
-                //TODO: display date only if next day. else display time
-                DateFormat.yMMMd('en_US').format(widget.createdAt),
+                formattedDuration,
                 style: TextStyle(color: Theme.of(context).colorScheme.primary),
               ),
             )
