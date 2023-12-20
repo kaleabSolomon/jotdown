@@ -29,12 +29,17 @@ class _HomePageState extends State<HomePage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     // initialize app bar actions
     _appBarActions = [
       IconButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const AddNotePage()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AddNotePage(
+                        isDarkMode: isDarkMode,
+                      )));
         },
         icon: Icon(
             color: Theme.of(context).colorScheme.primary, size: 40, Icons.add),
@@ -45,10 +50,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final notesBox = Hive.box<Note>('notesBox');
+    isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
 
     // Get all the notes from the box
     List<Note> notes = notesBox.values.toList();
-    isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Theme.of(context).colorScheme.background,

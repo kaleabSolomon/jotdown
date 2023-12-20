@@ -8,18 +8,16 @@ import 'package:jotdown/widgets/title_field.dart';
 import 'package:provider/provider.dart';
 
 class AddNotePage extends StatefulWidget {
-  const AddNotePage({super.key});
+  final bool isDarkMode;
+  const AddNotePage({super.key, required this.isDarkMode});
 
   @override
   State<AddNotePage> createState() => _AddNotePageState();
 }
 
 class _AddNotePageState extends State<AddNotePage> {
-  //FIXME: light-dark mode icons not interchanging
   //TODO: add undo to deletion
   // TODO: display last entered note first
-
-  bool isDarkMode = false;
 
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
@@ -101,7 +99,7 @@ class _AddNotePageState extends State<AddNotePage> {
         appBar: MyAppBar(
           title: "Add A Note",
           height: MediaQuery.of(context).size.height * 0.1,
-          isDarkMode: isDarkMode,
+          isDarkMode: widget.isDarkMode,
           toggleDarkMode: toggleTheme,
           appBarActions: _appBarActions,
         ),
