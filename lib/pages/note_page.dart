@@ -108,7 +108,6 @@ class _NotePageState extends State<NotePage> {
     Navigator.pop(context);
   }
 
-//TODO: still needs work. unsaved notes are being displayed
   void _showDialog() {
     showDialog(
         context: context,

@@ -16,9 +16,6 @@ class AddNotePage extends StatefulWidget {
 }
 
 class _AddNotePageState extends State<AddNotePage> {
-  // TODO: display last entered note first
-  //TODO: add confirmation to backing out of this page
-
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
 

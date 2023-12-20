@@ -57,7 +57,6 @@ class _NoteTileState extends State<NoteTile> {
     return Container(
         margin: const EdgeInsets.all(8),
         width: MediaQuery.of(context).size.width * 0.4,
-        // TODO: make the height dynamic
         height: 110,
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
