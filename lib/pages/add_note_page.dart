@@ -18,6 +18,7 @@ class AddNotePage extends StatefulWidget {
 class _AddNotePageState extends State<AddNotePage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
+  bool isPrivate = false;
 
   void toggleTheme() {
     Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
@@ -58,8 +59,11 @@ class _AddNotePageState extends State<AddNotePage> {
 
             // create a note object
 
-            Note note =
-                Note(title: title, content: content, createdAt: createdAt);
+            Note note = Note(
+                title: title,
+                content: content,
+                createdAt: createdAt,
+                isPrivate: isPrivate);
             // save notes to hive
             try {
               notesBox.add(note);
@@ -87,6 +91,13 @@ class _AddNotePageState extends State<AddNotePage> {
         icon: Icon(
             color: Theme.of(context).colorScheme.primary, size: 30, Icons.save),
       ),
+      IconButton(
+        onPressed: () {},
+        icon: Icon(
+            color: Theme.of(context).colorScheme.primary,
+            size: 30,
+            isPrivate ? Icons.lock : Icons.lock_open),
+      )
     ];
   }
 
